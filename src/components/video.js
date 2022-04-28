@@ -28,6 +28,7 @@ class Video extends React.Component {
     const component = this;
     this.setState({ socket });
     const { roomId } = this.props.match.params;
+    this.setState({ roomId }); 
     this.getUserMedia().then(() => {
       socket.emit('join', { roomId: roomId });
     });
@@ -216,6 +217,8 @@ class Video extends React.Component {
         {this.state.waiting && (
           <div className='status'>
             <p>Waiting for someone...</p>
+            <br/>
+            <p>Room ID: {this.state.roomId}</p>
           </div>
         )}
         {this.renderFull()}
